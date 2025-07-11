@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز النحلة - متجر العسل ومنتجات النحل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- نموذج تسجيل الدخول -->
+    <div id="login-overlay" class="login-overlay" style="display: none;">
+        <div class="login-container">
+            <div class="login-header">
+                <h2><i class="fas fa-lock"></i> دخول لوحة التحكم</h2>
+                <p>الرجاء إدخال كلمة المرور للوصول إلى لوحة التحكم</p>
+            </div>
+            
+            <div class="login-content">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                </form>
+                
+                <div class="change-password-section">
+                    <h3><i class="fas fa-key"></i> تغيير كلمة المرور</h3>
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="current-password">كلمة المرور الحالية</label>
+                            <input type="password" id="current-password" required placeholder="أدخل كلمة المرور الحالية">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="new-password">كلمة المرور الجديدة</label>
+                            <input type="password" id="new-password" required placeholder="أدخل كلمة المرور الجديدة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">تأكيد كلمة المرور</label>
+                            <input type="password" id="confirm-password" required placeholder="أأكد كلمة المرور الجديدة">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success" style="width: 100%;">
+                            <i class="fas fa-sync-alt"></i> تغيير كلمة المرور
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الترويسة -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#hero">
+                    <i class="fas fa-bee"></i>
+                    <h1>مركز النحلة</h1>
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="active">الرئيسية</a></li>
+                    <li><a href="#products">المنتجات</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">عن المتجر</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="#" id="admin-link">لوحة التحكم</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- لوحة التحكم -->
+    <section id="admin-panel" class="admin-panel">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2><i class="fas fa-cog"></i> لوحة تحكم الإدارة</h2>
+                <p>إدارة المنتجات والمتجر</p>
+                
+                <!-- زر العودة إلى المتجر -->
+                <button id="back-to-store" class="back-button">
+                    <i class="fas fa-arrow-left"></i> العودة إلى المتجر
+                </button>
+            </div>
+            
+            <div class="admin-content">
+                <div class="admin-section">
+                    <h3><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
+                    <form id="add-product-form">
+                        <div class="form-group">
+                            <label for="product-name">اسم المنتج</label>
+                            <input type="text" id="product-name" required placeholder="أدخل اسم المنتج">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-description">وصف المنتج</label>
+                            <textarea id="product-description" required placeholder="أدخل وصف المنتج"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-details">تفاصيل إضافية عن المنتج</label>
+                            <textarea id="product-details" placeholder="أدخل تفاصيل إضافية عن المنتج (فوائد، مكونات، استخدامات)"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-benefits">الفوائد الصحية (كل فائدة في سطر جديد)</label>
+                            <textarea id="product-benefits" placeholder="أدخل الفوائد الصحية، كل فائدة في سطر جديد"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-price">السعر (ر.س)</label>
+                            <input type="number" id="product-price" required min="0" step="0.01" placeholder="أدخل سعر المنتج">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-badge">علامة المنتج (اختياري)</label>
+                            <select id="product-badge">
+                                <option value="">بدون علامة</option>
+                                <option value="new">جديد</option>
+                                <option value="best-seller">الأكثر مبيعاً</option>
+                                <option value="offer">عروض</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-image">صورة المنتج الرئيسية</label>
+                            <input type="file" id="product-image" accept="image/*">
+                            <div class="image-preview" id="image-preview">
+                                <img id="preview-img" src="" alt="معاينة الصورة">
+                                <span id="preview-text"><i class="fas fa-image"></i> معاينة الصورة</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-images">صور المنتج الإضافية (يمكن اختيار أكثر من صورة)</label>
+                            <input type="file" id="product-images" accept="image/*" multiple>
+                            <div id="images-preview" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;">
+                                <!-- معاينة الصور المرفوعة -->
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-options">خيارات المنتج (مثل: لون، حجم)</label>
+                            <div id="options-container">
+                                <div class="option-group">
+                                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                        <input type="text" placeholder="اسم الخيار (مثل: لون)" class="option-name" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                        <input type="text" placeholder="قيم الخيار (مفصولة بفاصلة)" class="option-values" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                        <button type="button" class="btn btn-danger remove-option" style="padding: 8px;"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="add-option" class="btn" style="margin-top: 10px;">
+                                <i class="fas fa-plus"></i> إضافة خيار
+                            </button>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success" style="width: 100%;">
+                            <i class="fas fa-plus"></i> إضافة المنتج
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="admin-section">
+                    <h3><i class="fas fa-boxes"></i> المنتجات المضافة</h3>
+                    <div class="admin-products" id="admin-products-list">
+                        <div class="no-products">
+                            <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                            <p>لا توجد منتجات مضافة بعد</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة تفاصيل المنتج -->
+    <section id="product-detail" class="product-detail" style="display: none;">
+        <div class="container">
+            <button id="back-to-products" class="back-button">
+                <i class="fas fa-arrow-left"></i> العودة إلى المنتجات
+            </button>
+            <div class="product-detail-container">
+                <!-- سيتم ملء محتوى تفاصيل المنتج هنا ديناميكيًا -->
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero" id="hero">
+        <div class="container hero-content">
+            <h2>مرحباً بكم في مركز النحلة</h2>
+            <p>اكتشف أجود أنواع العسل ومنتجات النحل الطبيعية الطازجة مباشرة من المناحل إلى منزلك. جودة لا تضاهى ونكهات لا تنسى!</p>
+            <a href="#products" class="btn btn-primary">تصفح المنتجات</a>
+        </div>
+    </section>
+
+    <!-- قسم الميزات -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار مركز النحلة؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>شحن سريع</h3>
+                    <p>توصيل خلال 24-48 ساعة لجميع أنحاء المملكة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>جودة عالية</h3>
+                    <p>منتجات طبيعية 100% من أفضل المناحل</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>ضمان الجودة</h3>
+                    <p>ضمان استرجاع كامل المبلغ إذا لم تعجبك الجودة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>دعم فني</h3>
+                    <p>دعم فني على مدار الساعة لخدمتكم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-grid" id="products-container">
+                <!-- المنتجات ستظهر هنا من خلال JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الواتساب -->
+    <section id="whatsapp-group">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h2>انضم إلى مجتمع عشاق العسل الطبيعي</h2>
+                <p class="cta-description">احصل على عروض حصرية، نصائح صحية، وخصومات خاصة لأعضاء القروب فقط!</p>
+                <div class="cta-features">
+                    <div class="feature">
+                        <i class="fas fa-gift"></i>
+                        <span>عروض خاصة</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-percentage"></i>
+                        <span>خصومات حصرية</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>نصائح خبراء</span>
+                    </div>
+                </div>
+                <a href="https://chat.whatsapp.com/CPA4Bk8FNfTDekmhG6R6DF?mode=r_c" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> انضم إلى قروب الواتساب الآن
+                </a>
+                <div class="cta-note">
+                    <i class="fas fa-users"></i>
+                    <span>أكثر من 500 عضو يستفيدون من عروضنا اليومية!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>مركز النحلة</h3>
+                    <p>متجر متخصص في بيع أجود أنواع العسل ومنتجات النحل الطبيعية، نقدم لكم الجودة والطعم الأصيل.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#">عروض خاصة</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>منتجات مميزة</h3>
+                    <ul>
+                        <li><a href="#">عسل السدر الجبلي</a></li>
+                        <li><a href="#">عسل الزهور البرية</a></li>
+                        <li><a href="#">عسل المانوكا</a></li>
+                        <li><a href>صندوق هدايا العسل</a></li>
+                        <li><a href="#">شمع العسل الطبيعي</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col" id="contact">
+                    <h3>معلومات الاتصال</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> اليمن - حضرموت - القطن</p>
+                    <p><i class="fas fa-phone"></i> +967 771643727</p>
+                    <p><i class="fas fa-envelope"></i> wwmmww716@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 مركز النحلة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- سلة التسوق -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-container" id="cart-container">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart" id="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cart-items">
+            <!-- سيتم إضافة المنتجات هنا ديناميكيًا -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>سلة التسوق فارغة</p>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <span>الإجمالي:</span>
+                <span class="cart-total" id="cart-total">0 ر.س</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">إتمام الشراء</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
